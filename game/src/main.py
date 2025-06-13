@@ -45,9 +45,6 @@ class Game:
             self.all_sprites.draw(self.display)
             pygame.display.update()
 
-    def get_tiles_by_layer(self,tmx_map,layer_name):
-        return  tmx_map.get_layer_by_name(layer_name).tiles()
-
 if __name__=="__main__":
     game = Game()
     game.run()
