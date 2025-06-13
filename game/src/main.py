@@ -21,7 +21,7 @@ class Game:
         # print(self.tmx_maps)
 
     def setup(self,tmx_map,player_start_pos):
-        terrain_layer_tiles = tmx_map.get_layer_by_name("Terrain").tiles()
+        terrain_layer_tiles = self.get_tiles_by_layer(tmx_map,"Terrain")
         for x,y,surf in terrain_layer_tiles:
             position = (x * TILE_SIZE, y * TILE_SIZE)
             Sprite(position, surf,self.all_sprites)
@@ -37,6 +37,9 @@ class Game:
             # game logic
             self.all_sprites.draw(self.display)
             pygame.display.update()
+
+    def get_tiles_by_layer(self,tmx_map,layer_name):
+        return  tmx_map.get_layer_by_name(layer_name).tiles()
 
 if __name__=="__main__":
     game = Game()
