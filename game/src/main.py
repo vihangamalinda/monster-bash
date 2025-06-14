@@ -1,3 +1,5 @@
+import pygame.time
+
 from settings import *
 from pytmx.util_pygame import load_pygame
 from os.path import join, exists
@@ -11,6 +13,7 @@ class Game:
         pygame.init()
         self.display = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
         pygame.display.set_caption("Monster Bash")
+        self.clock = pygame.time.Clock()
         # Groups - contains all of visible sprites
         self.all_sprites = pygame.sprite.Group()
 
@@ -37,6 +40,8 @@ class Game:
 
     def run(self):
         while True:
+            # Delta time
+            dt = self.clock.tick() / 1000
             # event loop
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -44,8 +49,10 @@ class Game:
                     exit()
 
             # game logic
-            self.all_sprites.update()
+            self.all_sprites.update(dt)
             self.all_sprites.draw(self.display)
+            # print(self.clock.get_fps())
+            # print(dt)
             pygame.display.update()
 
 
