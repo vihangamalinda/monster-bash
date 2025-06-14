@@ -31,7 +31,8 @@ class Game:
         entities_layer_tiles = tmx_map.get_layer_by_name("Entities")
         for obj in entities_layer_tiles:
             if obj.name == "Player" and obj.properties['pos'] == player_start_pos:
-                player_pos = (obj.x, obj.y)
+                # (obj.x, obj.y)
+                player_pos = (200, 200)
                 Player(player_pos, self.all_sprites)
 
     def run(self):
