@@ -27,11 +27,25 @@ class Game:
         # print(self.tmx_maps)
 
     def setup(self, tmx_map, player_start_pos):
+        # Terrrain tiles
         terrain_layer_tiles = tmx_map.get_layer_by_name("Terrain").tiles()
         for x, y, surf in terrain_layer_tiles:
             position = (x * TILE_SIZE, y * TILE_SIZE)
             Sprite(position, surf, self.all_sprites)
 
+        # Terrrain top tiles
+        terrain_top_layer_tiles = tmx_map.get_layer_by_name("Terrain Top").tiles()
+        for x,y,surf in terrain_top_layer_tiles:
+            position = (x * TILE_SIZE, y * TILE_SIZE)
+            Sprite(position, surf, self.all_sprites)
+
+        # Object layer
+        object_layer = tmx_map.get_layer_by_name("Objects")
+        for obj in object_layer:
+            obj_pos = (obj.x, obj.y)
+            Sprite(obj_pos, obj.image, self.all_sprites)
+
+        # Entity objects
         entities_layer_tiles = tmx_map.get_layer_by_name("Entities")
         for obj in entities_layer_tiles:
             if obj.name == "Player" and obj.properties['pos'] == player_start_pos:
