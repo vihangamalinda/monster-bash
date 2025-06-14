@@ -37,7 +37,7 @@ class Game:
             if obj.name == "Player" and obj.properties['pos'] == player_start_pos:
                 # (obj.x, obj.y)
                 player_pos = (200, 200)
-                self.player =Player(player_pos, self.all_sprites)
+                self.player = Player(player_pos, self.all_sprites)
 
     def run(self):
         while True:
