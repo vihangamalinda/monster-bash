@@ -51,6 +51,7 @@ class Game:
 
             # game logic
             self.all_sprites.update(dt)
+            self.display.fill('black')
             self.all_sprites.draw(self.player.rect.center)
             # print(self.clock.get_fps())
             # print(dt)
