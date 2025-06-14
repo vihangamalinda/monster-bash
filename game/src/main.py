@@ -6,6 +6,7 @@ from os.path import join, exists
 
 from sprites import Sprite
 from entities import Player
+from groups import AllSprites
 
 
 class Game:
@@ -15,7 +16,7 @@ class Game:
         pygame.display.set_caption("Monster Bash")
         self.clock = pygame.time.Clock()
         # Groups - contains all of visible sprites
-        self.all_sprites = pygame.sprite.Group()
+        self.all_sprites = AllSprites()
 
         self.import_assets()
         self.setup(self.tmx_maps["world"], "house")
@@ -36,7 +37,7 @@ class Game:
             if obj.name == "Player" and obj.properties['pos'] == player_start_pos:
                 # (obj.x, obj.y)
                 player_pos = (200, 200)
-                Player(player_pos, self.all_sprites)
+                self.player =Player(player_pos, self.all_sprites)
 
     def run(self):
         while True:
@@ -50,7 +51,7 @@ class Game:
 
             # game logic
             self.all_sprites.update(dt)
-            self.all_sprites.draw(self.display)
+            self.all_sprites.draw(self.player.rect.center)
             # print(self.clock.get_fps())
             # print(dt)
             pygame.display.update()
