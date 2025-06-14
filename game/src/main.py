@@ -43,6 +43,7 @@ class Game:
                     exit()
 
             # game logic
+            self.all_sprites.update()
             self.all_sprites.draw(self.display)
             pygame.display.update()
 
