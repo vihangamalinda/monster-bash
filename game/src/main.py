@@ -37,7 +37,7 @@ class Game:
 
         # Terrrain top tiles
         terrain_top_layer_tiles = tmx_map.get_layer_by_name("Terrain Top").tiles()
-        for x,y,surf in terrain_top_layer_tiles:
+        for x, y, surf in terrain_top_layer_tiles:
             position = (x * TILE_SIZE, y * TILE_SIZE)
             Sprite(position, surf, self.all_sprites)
 
