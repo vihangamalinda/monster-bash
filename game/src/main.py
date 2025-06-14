@@ -23,7 +23,9 @@ class Game:
 
     def import_assets(self):
         # print(exists("../assets/maps/world.tmx"))
-        self.tmx_maps = {'world': load_pygame(join("..", "assets", "maps", "world.tmx"))}
+        self.tmx_maps = {'world': load_pygame(join("..", "assets", "maps", "world.tmx")),
+                         "hospital": load_pygame(join("..", "assets", "maps", "hospital.tmx")),
+                         }
         # print(self.tmx_maps)
 
     def setup(self, tmx_map, player_start_pos):
