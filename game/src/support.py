@@ -34,3 +34,11 @@ def import_folder_dic(*path):
             image_name = img_name_with_extension.split(".")[0]
             frames[image_name] = surface
     return frames
+
+def import_sub_folders(*path):
+    frames ={}
+    for folder_path,sub_folders,image_names in walk(join(*path)):
+        if sub_folders:
+            for sub_folder in sub_folders:
+                frames[sub_folder] =import_folder(*path,sub_folder)
+    return frames
