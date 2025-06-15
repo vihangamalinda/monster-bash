@@ -1,5 +1,6 @@
 from  settings import *
 from os.path import join,exists
+from os import walk
 
 def import_image(*path,alph=True,format="png"):
     full_path = join(*path) +f".{format}"
@@ -10,3 +11,12 @@ def import_image(*path,alph=True,format="png"):
     else:
         surface =pygame.image.load(full_path).convert()
     return surface
+
+def import_folder(*path):
+    frames =[]
+    for folder_path,sub_folders,image_names in walk(join(*path)):
+        for image_name in image_names:
+            full_path = join(folder_path,image_name)
+            surface = pygame.image.load(full_path).convert_alpha()
+            frames.append(surface)
+    return frames
