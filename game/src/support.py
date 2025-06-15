@@ -15,8 +15,8 @@ def import_image(*path,alph=True,format="png"):
 def import_folder(*path):
     frames =[]
     for folder_path,sub_folders,image_names in walk(join(*path)):
-        for image_name in sorted(image_names,key=lambda name:name.split('.')[0]):
-            full_path = join(folder_path,image_name)
+        for img_name_with_extension in sorted(image_names,key=lambda name_with_extension:name_with_extension.split('.')[0]):
+            full_path = join(folder_path,img_name_with_extension)
             surface = pygame.image.load(full_path).convert_alpha()
             frames.append(surface)
     return frames
