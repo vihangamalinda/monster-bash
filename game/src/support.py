@@ -35,29 +35,31 @@ def import_folder_dic(*path):
             frames[image_name] = surface
     return frames
 
+
 def import_sub_folders(*path):
-    frames ={}
-    for folder_path,sub_folders,image_names in walk(join(*path)):
+    frames = {}
+    for folder_path, sub_folders, image_names in walk(join(*path)):
         if sub_folders:
             for sub_folder in sub_folders:
-                frames[sub_folder] =import_folder(*path,sub_folder)
+                frames[sub_folder] = import_folder(*path, sub_folder)
     return frames
 
-def import_tilemap(cols,rows,*path):
-    frames={}
-    surf=import_image(*path)
-    cell_width=surf.get_width()/cols
-    cell_height=surf.get_height()/rows
+
+def import_tilemap(cols, rows, *path):
+    frames = {}
+    surf = import_image(*path)
+    cell_width = surf.get_width() / cols
+    cell_height = surf.get_height() / rows
 
     for col in range(cols):
         for row in range(rows):
-            cutout_rect = pygame.Rect(col*cell_width,row*cell_height,cell_width,cell_height)
-            cutout_surf =pygame.Surface((cell_width,cell_height))
+            cutout_rect = pygame.Rect(col * cell_width, row * cell_height, cell_width, cell_height)
+            cutout_surf = pygame.Surface((cell_width, cell_height))
 
             # Assigning green colour if the cutout object can't cover the whole area on the surface
             # And asking to ignore the green colour then it won't affect the appearance of the original image
             cutout_surf.fill("green")
             cutout_surf.set_colorkey("green")
 
-            cutout_surf.blit(surf,(0,0),cutout_rect)
-            frames[(col,row)] =cutout_surf
+            cutout_surf.blit(surf, (0, 0), cutout_rect)
+            frames[(col, row)] = cutout_surf
