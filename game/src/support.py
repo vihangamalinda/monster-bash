@@ -54,5 +54,10 @@ def import_tilemap(cols,rows,*path):
             cutout_rect = pygame.Rect(col*cell_width,row*cell_height,cell_width,cell_height)
             cutout_surf =pygame.Surface((cell_width,cell_height))
 
+            # Assigning green colour if the cutout object can't cover the whole area on the surface
+            # And asking to ignore the green colour then it won't affect the appearance of the original image
+            cutout_surf.fill("green")
+            cutout_surf.set_colorkey("green")
+
             cutout_surf.blit(surf,(0,0),cutout_rect)
             frames[(col,row)] =cutout_surf
