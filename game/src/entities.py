@@ -6,6 +6,7 @@ class Entity(pygame.sprite.Sprite):
     def __init__(self,pos,frames,groups):
         super().__init__(groups)
 
+        self.speed =250
 
 class Player(Entity):
     def __init__(self, pos,frames, groups):
@@ -27,7 +28,7 @@ class Player(Entity):
         self.direction = input_vector
 
     def move(self, dt):
-        self.rect.center += self.direction * 250 * dt
+        self.rect.center += self.direction * self.speed * dt
 
     def update(self, dt):
         self.input()
