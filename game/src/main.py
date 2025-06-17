@@ -7,7 +7,7 @@ from os.path import join, exists
 from sprites import Sprite, AnimatedSprite
 from entities import Player
 from groups import AllSprites
-from support import import_folder,coast_importer
+from support import import_folder, coast_importer
 
 
 class Game:
@@ -30,7 +30,8 @@ class Game:
 
         self.overworld_frames = {
             "water": import_folder("..", "graphics", "tilesets", "water"),
-            "coast": coast_importer(TILE_PER_SINGLE_COAST_IMAGE * 8, TILE_PER_SINGLE_COAST_IMAGE * 4, "..", "graphics", "tilesets", "coast"),
+            "coast": coast_importer(TILE_PER_SINGLE_COAST_IMAGE * 8, TILE_PER_SINGLE_COAST_IMAGE * 4, "..", "graphics",
+                                    "tilesets", "coast"),
         }
 
     def setup(self, tmx_map, player_start_pos):
