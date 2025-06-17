@@ -7,6 +7,7 @@ from os.path import join, exists
 from sprites import Sprite
 from entities import Player
 from groups import AllSprites
+from support import import_folder
 
 
 class Game:
@@ -26,7 +27,11 @@ class Game:
         self.tmx_maps = {'world': load_pygame(join("..", "assets", "maps", "world.tmx")),
                          "hospital": load_pygame(join("..", "assets", "maps", "hospital.tmx")),
                          }
-        # print(self.tmx_maps)
+
+        self.overworld_frames ={
+            "water":import_folder("..","graphics","tilesets","water")
+        }
+        print(self.overworld_frames)
 
     def setup(self, tmx_map, player_start_pos):
         # Terrrain tiles
