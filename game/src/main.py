@@ -7,7 +7,7 @@ from os.path import join, exists
 from sprites import Sprite, AnimatedSprite
 from entities import Player
 from groups import AllSprites
-from support import import_folder, coast_importer
+from support import import_folder, coast_importer,all_character_import
 
 
 class Game:
@@ -32,6 +32,7 @@ class Game:
             "water": import_folder("..", "graphics", "tilesets", "water"),
             "coast": coast_importer(TILE_PER_SINGLE_COAST_IMAGE * 8, TILE_PER_SINGLE_COAST_IMAGE * 4, "..", "graphics",
                                     "tilesets", "coast"),
+            "character": all_character_import("..","graphics", "characters"),
         }
 
     def setup(self, tmx_map, player_start_pos):
