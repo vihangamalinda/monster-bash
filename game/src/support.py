@@ -75,7 +75,7 @@ def coast_importer(cols, rows, *path):
     }
 
     for index, terrain_type in enumerate(terrain_types):
-        print(index, terrain_type)
+        # print(index, terrain_type)
         new_dict[terrain_type] = {}
         for key, pos in costal_sides.items():
             new_dict[terrain_type][key] = [frames_dic[(pos[0] + index * 3, pos[1] + row)] for row in range(0, rows, 3)]
