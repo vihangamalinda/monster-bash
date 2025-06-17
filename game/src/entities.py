@@ -16,7 +16,6 @@ class Player(pygame.sprite.Sprite):
         input_vector = vector()
 
         if keys[pygame.K_a]:
-            print("A")
             input_vector.x -= 1
         if keys[pygame.K_d]:
             input_vector.x += 1
@@ -24,7 +23,6 @@ class Player(pygame.sprite.Sprite):
             input_vector.y -= 1
         if keys[pygame.K_s]:
             input_vector.y += 1
-        print(input_vector)
         self.direction = input_vector
 
     def move(self, dt):
