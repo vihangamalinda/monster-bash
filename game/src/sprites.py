@@ -15,7 +15,7 @@ class AnimatedSprite(Sprite):
         super().__init__(pos,frames[0],groups)
 
     def animate(self,dt):
-        self.frame_index +=4*dt
+        self.frame_index +=ANIMATION_SPEED*dt
         current_frame_index = int(self.frame_index % len(self.frames))
         self.image = self.frames[current_frame_index]
 
