@@ -5,8 +5,6 @@ from os import walk
 
 def import_image(*path, alph=True, format="png"):
     full_path = join(*path) + f".{format}"
-    print(full_path)
-    print(exists(full_path))
     if alph:
         surface = pygame.image.load(full_path).convert_alpha()
     else:
@@ -63,3 +61,24 @@ def import_tilemap(cols, rows, *path):
 
             cutout_surf.blit(surf, (0, 0), cutout_rect)
             frames[(col, row)] = cutout_surf
+    return frames
+
+
+def coast_importer(cols, rows, *path):
+    frames_dic = import_tilemap(cols, rows, *path)
+    new_dict = {}
+    terrain_types = ["grass", "grass_i", "sand_i", "sand", "rock", "rock_i", "ice", "ice_i"]
+    costal_sides = {
+        "topleft": (0, 0), "top": (1, 0), "topright": (2, 0),
+        "left": (0, 1), "right": (2, 1),
+        "bottomleft": (0, 2), "bottom": (1, 2), "bottomright": (2, 2)
+    }
+
+    for index, terrain_type in enumerate(terrain_types):
+        # print(index, terrain_type)
+        new_dict[terrain_type] = {}
+        for key, pos in costal_sides.items():
+            new_dict[terrain_type][key] = [frames_dic[(pos[0] + index * 3, pos[1] + row)] for row in range(0, rows, 3)]
+
+    # print(frames_dic)
+    return new_dict
