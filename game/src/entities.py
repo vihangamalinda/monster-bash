@@ -17,17 +17,31 @@ class Entity(pygame.sprite.Sprite):
         self.speed =250
 
         # sprite setup
-        self.image =self.frames[self.facing_direction][self.frame_index]
+        self.image =self.frames[self.get_state()][self.frame_index]
         self.rect =self.image.get_frect(center=pos)
 
     def animate(self,dt):
         self.frame_index+= ANIMATION_SPEED*dt
-        player_state =self.facing_direction
+        player_state =self.get_state()
         current_frame = int(self.frame_index % len(self.frames[player_state]))
         self.image = self.frames[player_state][current_frame]
 
     def update(self,dt):
         self.animate(dt)
+
+    def get_state(self):
+        moving = bool(self.direction)
+        if moving:
+            is_moving_x_axis = self.direction.x != 0
+            if is_moving_x_axis:
+                self.facing_direction ="right" if self.direction.x >0 else "left"
+
+            is_moving_y_axis = self.direction.y != 0
+            if is_moving_y_axis:
+                self.facing_direction ="down" if self.direction.y >0 else "up"
+        return f'{self.facing_direction}{"" if moving else "_idle"}'
+
+
 
 class Player(Entity):
     def __init__(self, pos,frames, groups):
