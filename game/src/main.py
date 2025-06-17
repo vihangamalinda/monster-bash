@@ -7,7 +7,7 @@ from os.path import join, exists
 from sprites import Sprite, AnimatedSprite
 from entities import Player
 from groups import AllSprites
-from support import import_folder
+from support import import_folder,coast_importer
 
 
 class Game:
@@ -29,9 +29,9 @@ class Game:
                          }
 
         self.overworld_frames = {
-            "water": import_folder("..", "graphics", "tilesets", "water")
+            "water": import_folder("..", "graphics", "tilesets", "water"),
+            "coast": coast_importer(TILE_PER_SINGLE_COAST_IMAGE * 8, TILE_PER_SINGLE_COAST_IMAGE * 4, "..", "graphics", "tilesets", "coast"),
         }
-        print(self.overworld_frames)
 
     def setup(self, tmx_map, player_start_pos):
         # Terrrain tiles
@@ -68,6 +68,15 @@ class Game:
                     # print (x, y)
                     position = (x, y)
                     AnimatedSprite(position, self.overworld_frames["water"], self.all_sprites)
+
+        # Coast layer
+        coast_layer = tmx_map.get_layer_by_name("Coast")
+        for obj in coast_layer:
+            position = (obj.x, obj.y)
+            terrain_type = obj.properties['terrain']
+            costal_side = obj.properties['side']
+            frames = self.overworld_frames["coast"][terrain_type][costal_side]
+            AnimatedSprite(position, frames, self.all_sprites)
 
     def run(self):
         while True:
