@@ -51,5 +51,6 @@ class Player(Entity):
         self.rect.center += self.direction * self.speed * dt
 
     def update(self, dt):
+        super().update(dt)
         self.input()
         self.move(dt)
