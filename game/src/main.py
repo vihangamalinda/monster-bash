@@ -28,8 +28,8 @@ class Game:
                          "hospital": load_pygame(join("..", "assets", "maps", "hospital.tmx")),
                          }
 
-        self.overworld_frames ={
-            "water":import_folder("..","graphics","tilesets","water")
+        self.overworld_frames = {
+            "water": import_folder("..", "graphics", "tilesets", "water")
         }
         print(self.overworld_frames)
 
@@ -63,12 +63,11 @@ class Game:
         water_layer = tmx_map.get_layer_by_name("Water")
         for obj in water_layer:
             # range(start,end, incremental_step)
-            for x in range(int(obj.x),int(obj.x+obj.width),TILE_SIZE):
-                for y in range(int(obj.y),int(obj.y+obj.height),TILE_SIZE):
+            for x in range(int(obj.x), int(obj.x + obj.width), TILE_SIZE):
+                for y in range(int(obj.y), int(obj.y + obj.height), TILE_SIZE):
                     # print (x, y)
-                    position = (x,y)
-                    AnimatedSprite(position,self.overworld_frames["water"],self.all_sprites)
-
+                    position = (x, y)
+                    AnimatedSprite(position, self.overworld_frames["water"], self.all_sprites)
 
     def run(self):
         while True:
