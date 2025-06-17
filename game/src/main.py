@@ -32,7 +32,7 @@ class Game:
             "water": import_folder("..", "graphics", "tilesets", "water"),
             "coast": coast_importer(TILE_PER_SINGLE_COAST_IMAGE * 8, TILE_PER_SINGLE_COAST_IMAGE * 4, "..", "graphics",
                                     "tilesets", "coast"),
-            "character": all_character_import("..","graphics", "characters"),
+            "characters": all_character_import("..","graphics", "characters"),
         }
 
     def setup(self, tmx_map, player_start_pos):
