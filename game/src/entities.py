@@ -6,8 +6,28 @@ class Entity(pygame.sprite.Sprite):
     def __init__(self,pos,frames,groups):
         super().__init__(groups)
 
+        # graphic
+        self.frame_index=0
+        self.frames = frames
+        self.facing_direction = "down"
+
+
+        # movement
         self.direction = vector()
         self.speed =250
+
+        # sprite setup
+        self.image =self.frames[self.facing_direction][self.frame_index]
+        self.rect =self.image.get_frect(center=pos)
+
+    def animate(self,dt):
+        self.frame_index+= ANIMATION_SPEED*dt
+        player_state =self.facing_direction
+        current_frame = int(self.frame_index % len(self.frames[player_state]))
+        self.image = self.frames[player_state][current_frame]
+
+    def update(self,dt):
+        self.animate(dt)
 
 class Player(Entity):
     def __init__(self, pos,frames, groups):
