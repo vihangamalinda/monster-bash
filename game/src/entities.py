@@ -6,12 +6,12 @@ class Entity(pygame.sprite.Sprite):
     def __init__(self,pos,frames,groups):
         super().__init__(groups)
 
+        self.direction = vector()
         self.speed =250
 
 class Player(Entity):
     def __init__(self, pos,frames, groups):
         super().__init__(pos,frames,groups)
-        self.direction = vector()
 
     def input(self):
         keys = pygame.key.get_pressed()
