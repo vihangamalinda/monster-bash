@@ -82,3 +82,11 @@ def coast_importer(cols, rows, *path):
 
     # print(frames_dic)
     return new_dict
+
+def character_importer(cols,rows,*path):
+    frame_dic =import_tilemap(cols,rows,*path)
+    new_dict ={}
+    for row,direction in enumerate(("down","left","right","up")):
+        new_dict[direction] = [frame_dic[(col,row)] for col in range(cols)]
+        new_dict[f"{direction}_idle"]=[frame_dic[(0,row)]]
+    return new_dict
