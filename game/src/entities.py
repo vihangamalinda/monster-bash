@@ -2,31 +2,31 @@ import pygame
 
 from settings import *
 
+
 class Entity(pygame.sprite.Sprite):
-    def __init__(self,pos,frames,groups):
+    def __init__(self, pos, frames, groups):
         super().__init__(groups)
 
         # graphic
-        self.frame_index=0
+        self.frame_index = 0
         self.frames = frames
         self.facing_direction = "down"
 
-
         # movement
         self.direction = vector()
-        self.speed =250
+        self.speed = 250
 
         # sprite setup
-        self.image =self.frames[self.get_state()][self.frame_index]
-        self.rect =self.image.get_frect(center=pos)
+        self.image = self.frames[self.get_state()][self.frame_index]
+        self.rect = self.image.get_frect(center=pos)
 
-    def animate(self,dt):
-        self.frame_index+= ANIMATION_SPEED*dt
-        player_state =self.get_state()
+    def animate(self, dt):
+        self.frame_index += ANIMATION_SPEED * dt
+        player_state = self.get_state()
         current_frame = int(self.frame_index % len(self.frames[player_state]))
         self.image = self.frames[player_state][current_frame]
 
-    def update(self,dt):
+    def update(self, dt):
         self.animate(dt)
 
     def get_state(self):
@@ -34,18 +34,17 @@ class Entity(pygame.sprite.Sprite):
         if moving:
             is_moving_x_axis = self.direction.x != 0
             if is_moving_x_axis:
-                self.facing_direction ="right" if self.direction.x >0 else "left"
+                self.facing_direction = "right" if self.direction.x > 0 else "left"
 
             is_moving_y_axis = self.direction.y != 0
             if is_moving_y_axis:
-                self.facing_direction ="down" if self.direction.y >0 else "up"
+                self.facing_direction = "down" if self.direction.y > 0 else "up"
         return f'{self.facing_direction}{"" if moving else "_idle"}'
 
 
-
 class Player(Entity):
-    def __init__(self, pos,frames, groups):
-        super().__init__(pos,frames,groups)
+    def __init__(self, pos, frames, groups):
+        super().__init__(pos, frames, groups)
 
     def input(self):
         keys = pygame.key.get_pressed()

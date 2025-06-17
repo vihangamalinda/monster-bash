@@ -83,21 +83,22 @@ def coast_importer(cols, rows, *path):
     # print(frames_dic)
     return new_dict
 
-def character_importer(cols,rows,*path):
-    frame_dic =import_tilemap(cols,rows,*path)
-    new_dict ={}
-    for row,direction in enumerate(("down","left","right","up")):
-        new_dict[direction] = [frame_dic[(col,row)] for col in range(cols)]
-        new_dict[f"{direction}_idle"]=[frame_dic[(0,row)]]
+
+def character_importer(cols, rows, *path):
+    frame_dic = import_tilemap(cols, rows, *path)
+    new_dict = {}
+    for row, direction in enumerate(("down", "left", "right", "up")):
+        new_dict[direction] = [frame_dic[(col, row)] for col in range(cols)]
+        new_dict[f"{direction}_idle"] = [frame_dic[(0, row)]]
     return new_dict
 
 
 def all_character_import(*path):
-    new_dict ={}
+    new_dict = {}
     print("HGI")
     for folder_path, sub_folders, image_names in walk(join(*path)):
         for img_name_with_extension in image_names:
             img_name = img_name_with_extension.split(".")[0]
-            new_dict[img_name] = character_importer(4,4,*path,img_name)
+            new_dict[img_name] = character_importer(4, 4, *path, img_name)
             print(img_name)
     return new_dict
