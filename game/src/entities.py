@@ -10,9 +10,6 @@ class Entity(pygame.sprite.Sprite):
 class Player(Entity):
     def __init__(self, pos,frames, groups):
         super().__init__(pos,frames,groups)
-        self.image = pygame.Surface((100, 100))
-        self.image.fill("red")
-        self.rect = self.image.get_frect(center=pos)
         self.direction = vector()
 
     def input(self):
