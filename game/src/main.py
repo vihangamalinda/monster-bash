@@ -59,7 +59,8 @@ class Game:
         for obj in entities_layer_tiles:
             if obj.name == "Player" and obj.properties['pos'] == player_start_pos:
                 player_pos = (obj.x, obj.y)
-                self.player = Player(player_pos, self.all_sprites)
+                player_frames = self.overworld_frames["characters"]["player"]
+                self.player = Player(player_pos, player_frames, self.all_sprites)
 
         # Water layer
         water_layer = tmx_map.get_layer_by_name("Water")
