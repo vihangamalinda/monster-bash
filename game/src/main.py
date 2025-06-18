@@ -7,6 +7,7 @@ from os.path import join, exists
 from sprites import Sprite, AnimatedSprite
 from entities import Player
 from groups import AllSprites
+from src.entities import Character
 from support import import_folder, coast_importer, all_character_import
 
 
