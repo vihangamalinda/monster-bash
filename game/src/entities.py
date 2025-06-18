@@ -20,6 +20,7 @@ class Entity(pygame.sprite.Sprite):
         # sprite setup
         self.image = self.frames[self.get_state()][self.frame_index]
         self.rect = self.image.get_frect(center=pos)
+        self.y_sort =self.rect.centery
 
     def animate(self, dt):
         self.frame_index += ANIMATION_SPEED * dt
