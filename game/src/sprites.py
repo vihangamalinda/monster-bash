@@ -10,6 +10,12 @@ class Sprite(pygame.sprite.Sprite):
         self.drawing_priority = drawing_priority
         self.y_sort = self.rect.centery
 
+class MonsterPatchSprite(Sprite):
+    def __init__(self,pos,surf,groups,biome):
+        self.biome = biome
+        priority_value = WORLD_PRIORITY_ORDER["main" if biome !="sand" else "bg"]
+        super().__init__(pos,surf,groups,priority_value)
+        self.y_sort -=40
 
 class AnimatedSprite(Sprite):
     def __init__(self, pos, frames, groups, drawing_priority=WORLD_PRIORITY_ORDER["main"]):
