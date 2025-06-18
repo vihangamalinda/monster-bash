@@ -40,13 +40,13 @@ class Game:
         terrain_layer_tiles = tmx_map.get_layer_by_name("Terrain").tiles()
         for x, y, surf in terrain_layer_tiles:
             position = (x * TILE_SIZE, y * TILE_SIZE)
-            Sprite(position, surf, self.all_sprites,WORLD_PRIORITY_ORDER["bg"])
+            Sprite(position, surf, self.all_sprites, WORLD_PRIORITY_ORDER["bg"])
 
         # Terrrain top tiles
         terrain_top_layer_tiles = tmx_map.get_layer_by_name("Terrain Top").tiles()
         for x, y, surf in terrain_top_layer_tiles:
             position = (x * TILE_SIZE, y * TILE_SIZE)
-            Sprite(position, surf, self.all_sprites,WORLD_PRIORITY_ORDER["bg"])
+            Sprite(position, surf, self.all_sprites, WORLD_PRIORITY_ORDER["bg"])
 
         # Water layer
         water_layer = tmx_map.get_layer_by_name("Water")
@@ -56,7 +56,8 @@ class Game:
                 for y in range(int(obj.y), int(obj.y + obj.height), TILE_SIZE):
                     # print (x, y)
                     position = (x, y)
-                    AnimatedSprite(position, self.overworld_frames["water"], self.all_sprites,WORLD_PRIORITY_ORDER["water"])
+                    AnimatedSprite(position, self.overworld_frames["water"], self.all_sprites,
+                                   WORLD_PRIORITY_ORDER["water"])
 
         # Coast layer
         coast_layer = tmx_map.get_layer_by_name("Coast")
