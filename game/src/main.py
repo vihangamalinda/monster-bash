@@ -48,6 +48,25 @@ class Game:
             position = (x * TILE_SIZE, y * TILE_SIZE)
             Sprite(position, surf, self.all_sprites,WORLD_PRIORITY_ORDER["bg"])
 
+        # Water layer
+        water_layer = tmx_map.get_layer_by_name("Water")
+        for obj in water_layer:
+            # range(start,end, incremental_step)
+            for x in range(int(obj.x), int(obj.x + obj.width), TILE_SIZE):
+                for y in range(int(obj.y), int(obj.y + obj.height), TILE_SIZE):
+                    # print (x, y)
+                    position = (x, y)
+                    AnimatedSprite(position, self.overworld_frames["water"], self.all_sprites,WORLD_PRIORITY_ORDER["water"])
+
+        # Coast layer
+        coast_layer = tmx_map.get_layer_by_name("Coast")
+        for obj in coast_layer:
+            position = (obj.x, obj.y)
+            terrain_type = obj.properties['terrain']
+            costal_side = obj.properties['side']
+            frames = self.overworld_frames["coast"][terrain_type][costal_side]
+            AnimatedSprite(position, frames, self.all_sprites, WORLD_PRIORITY_ORDER["bg"])
+
         # Object layer
         object_layer = tmx_map.get_layer_by_name("Objects")
         for obj in object_layer:
@@ -69,25 +88,6 @@ class Game:
                 character_frames = self.overworld_frames["characters"][character_type]
                 character_direction = obj.properties["direction"]
                 Character(position, character_frames, character_direction, self.all_sprites)
-
-        # Water layer
-        water_layer = tmx_map.get_layer_by_name("Water")
-        for obj in water_layer:
-            # range(start,end, incremental_step)
-            for x in range(int(obj.x), int(obj.x + obj.width), TILE_SIZE):
-                for y in range(int(obj.y), int(obj.y + obj.height), TILE_SIZE):
-                    # print (x, y)
-                    position = (x, y)
-                    AnimatedSprite(position, self.overworld_frames["water"], self.all_sprites,WORLD_PRIORITY_ORDER["water"])
-
-        # Coast layer
-        coast_layer = tmx_map.get_layer_by_name("Coast")
-        for obj in coast_layer:
-            position = (obj.x, obj.y)
-            terrain_type = obj.properties['terrain']
-            costal_side = obj.properties['side']
-            frames = self.overworld_frames["coast"][terrain_type][costal_side]
-            AnimatedSprite(position, frames, self.all_sprites, WORLD_PRIORITY_ORDER["bg"])
 
         # Monster-grass patches layer
         monsters_layer = tmx_map.get_layer_by_name("Monsters")
