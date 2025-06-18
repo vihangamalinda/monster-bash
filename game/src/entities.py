@@ -67,3 +67,10 @@ class Player(Entity):
         super().update(dt)
         self.input()
         self.move(dt)
+
+class Character(Entity):
+    def __init__(self,pos,frames,facing_direction,groups):
+        super().__init__(pos, frames,facing_direction, groups)
+
+    def update(self,dt):
+        super().update(dt)
