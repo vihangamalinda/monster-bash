@@ -89,6 +89,12 @@ class Game:
             frames = self.overworld_frames["coast"][terrain_type][costal_side]
             AnimatedSprite(position, frames, self.all_sprites)
 
+        # Monster-grass patches layer
+        monsters_layer = tmx_map.get_layer_by_name("Monsters")
+        for obj in monsters_layer:
+            position = (obj.x, obj.y)
+            Sprite(position, obj.image, self.all_sprites)
+
     def run(self):
         while True:
             # Delta time
