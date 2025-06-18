@@ -95,10 +95,8 @@ def character_importer(cols, rows, *path):
 
 def all_character_import(*path):
     new_dict = {}
-    print("HGI")
     for folder_path, sub_folders, image_names in walk(join(*path)):
         for img_name_with_extension in image_names:
             img_name = img_name_with_extension.split(".")[0]
             new_dict[img_name] = character_importer(4, 4, *path, img_name)
-            print(img_name)
     return new_dict

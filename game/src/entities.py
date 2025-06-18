@@ -4,7 +4,7 @@ from settings import *
 
 
 class Entity(pygame.sprite.Sprite):
-    def __init__(self, pos, frames,facing_direction, groups):
+    def __init__(self, pos, frames, facing_direction, groups):
         super().__init__(groups)
 
         # graphic
@@ -43,8 +43,8 @@ class Entity(pygame.sprite.Sprite):
 
 
 class Player(Entity):
-    def __init__(self, pos, frames,facing_direction, groups):
-        super().__init__(pos, frames, facing_direction,groups)
+    def __init__(self, pos, frames, facing_direction, groups):
+        super().__init__(pos, frames, facing_direction, groups)
 
     def input(self):
         keys = pygame.key.get_pressed()
@@ -68,9 +68,10 @@ class Player(Entity):
         self.input()
         self.move(dt)
 
-class Character(Entity):
-    def __init__(self,pos,frames,facing_direction,groups):
-        super().__init__(pos, frames,facing_direction, groups)
 
-    def update(self,dt):
+class Character(Entity):
+    def __init__(self, pos, frames, facing_direction, groups):
+        super().__init__(pos, frames, facing_direction, groups)
+
+    def update(self, dt):
         super().update(dt)

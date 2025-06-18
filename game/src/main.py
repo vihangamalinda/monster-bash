@@ -5,9 +5,8 @@ from pytmx.util_pygame import load_pygame
 from os.path import join, exists
 
 from sprites import Sprite, AnimatedSprite
-from entities import Player
+from entities import Player, Character
 from groups import AllSprites
-from src.entities import Character
 from support import import_folder, coast_importer, all_character_import
 
 
@@ -61,15 +60,15 @@ class Game:
             if obj.name == "Player" and obj.properties['pos'] == player_start_pos:
                 player_pos = (obj.x, obj.y)
                 player_frames = self.overworld_frames["characters"]["player"]
-                player_direction =obj.properties['direction']
-                self.player = Player(player_pos, player_frames,player_direction, self.all_sprites)
+                player_direction = obj.properties['direction']
+                self.player = Player(player_pos, player_frames, player_direction, self.all_sprites)
 
-            if obj.name == "Character" :
+            if obj.name == "Character":
                 position = (obj.x, obj.y)
                 character_type = obj.properties["graphic"]
                 character_frames = self.overworld_frames["characters"][character_type]
-                character_direction =obj.properties["direction"]
-                Character(position, character_frames,character_direction, self.all_sprites)
+                character_direction = obj.properties["direction"]
+                Character(position, character_frames, character_direction, self.all_sprites)
 
         # Water layer
         water_layer = tmx_map.get_layer_by_name("Water")
