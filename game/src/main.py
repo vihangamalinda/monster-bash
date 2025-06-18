@@ -72,7 +72,7 @@ class Game:
         object_layer = tmx_map.get_layer_by_name("Objects")
         for obj in object_layer:
             obj_pos = (obj.x, obj.y)
-            if obj.name =="top":
+            if obj.name == "top":
                 Sprite(obj_pos, obj.image, self.all_sprites, WORLD_PRIORITY_ORDER["top"])
             else:
                 Sprite(obj_pos, obj.image, self.all_sprites)

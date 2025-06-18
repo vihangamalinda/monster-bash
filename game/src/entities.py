@@ -6,7 +6,7 @@ from settings import *
 class Entity(pygame.sprite.Sprite):
     def __init__(self, pos, frames, facing_direction, groups):
         super().__init__(groups)
-        self.drawing_priority=WORLD_PRIORITY_ORDER["main"]
+        self.drawing_priority = WORLD_PRIORITY_ORDER["main"]
 
         # graphic
         self.frame_index = 0
@@ -20,7 +20,7 @@ class Entity(pygame.sprite.Sprite):
         # sprite setup
         self.image = self.frames[self.get_state()][self.frame_index]
         self.rect = self.image.get_frect(center=pos)
-        self.y_sort =self.rect.centery
+        self.y_sort = self.rect.centery
 
     def animate(self, dt):
         self.frame_index += ANIMATION_SPEED * dt
@@ -30,7 +30,7 @@ class Entity(pygame.sprite.Sprite):
 
     def update(self, dt):
         self.animate(dt)
-        self.y_sort =self.rect.centery
+        self.y_sort = self.rect.centery
 
     def get_state(self):
         moving = bool(self.direction)

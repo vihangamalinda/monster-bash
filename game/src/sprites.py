@@ -8,7 +8,7 @@ class Sprite(pygame.sprite.Sprite):
         # frect() => floating point rectangle
         self.rect = self.image.get_frect(topleft=pos)
         self.drawing_priority = drawing_priority
-        self.y_sort =self.rect.centery
+        self.y_sort = self.rect.centery
 
 
 class AnimatedSprite(Sprite):
@@ -24,4 +24,4 @@ class AnimatedSprite(Sprite):
 
     def update(self, dt):
         self.animate(dt)
-        self.y_sort =self.rect.centery
+        self.y_sort = self.rect.centery
