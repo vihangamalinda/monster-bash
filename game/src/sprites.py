@@ -24,3 +24,4 @@ class AnimatedSprite(Sprite):
 
     def update(self, dt):
         self.animate(dt)
+        self.y_sort =self.rect.centery
