@@ -4,7 +4,7 @@ from settings import *
 from pytmx.util_pygame import load_pygame
 from os.path import join, exists
 
-from sprites import Sprite, AnimatedSprite
+from sprites import Sprite, AnimatedSprite,MonsterPatchSprite
 from entities import Player, Character
 from groups import AllSprites
 from support import import_folder, coast_importer, all_character_import
@@ -97,7 +97,8 @@ class Game:
         monsters_layer = tmx_map.get_layer_by_name("Monsters")
         for obj in monsters_layer:
             position = (obj.x, obj.y)
-            Sprite(position, obj.image, self.all_sprites)
+            biome = obj.properties["biome"]
+            MonsterPatchSprite(position, obj.image, self.all_sprites,biome)
 
     def run(self):
         while True:
