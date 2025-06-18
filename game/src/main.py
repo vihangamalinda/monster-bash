@@ -60,9 +60,15 @@ class Game:
             if obj.name == "Player" and obj.properties['pos'] == player_start_pos:
                 player_pos = (obj.x, obj.y)
                 player_frames = self.overworld_frames["characters"]["player"]
-                self.player = Player(player_pos, player_frames, self.all_sprites)
                 player_direction =obj.properties['direction']
                 self.player = Player(player_pos, player_frames,player_direction, self.all_sprites)
+
+            if obj.name == "Character" :
+                position = (obj.x, obj.y)
+                character_type = obj.properties["graphic"]
+                character_frames = self.overworld_frames["characters"][character_type]
+                character_direction =obj.properties["direction"]
+                Character(position, character_frames,character_direction, self.all_sprites)
 
         # Water layer
         water_layer = tmx_map.get_layer_by_name("Water")
