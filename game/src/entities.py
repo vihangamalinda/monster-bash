@@ -6,6 +6,7 @@ from settings import *
 class Entity(pygame.sprite.Sprite):
     def __init__(self, pos, frames, facing_direction, groups):
         super().__init__(groups)
+        self.drawing_priority=WORLD_PRIORITY_ORDER["main"]
 
         # graphic
         self.frame_index = 0
